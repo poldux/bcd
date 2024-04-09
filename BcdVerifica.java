@@ -1,5 +1,7 @@
 package verificaTpsitGiacomo;
 
+import java.util.Hashtable;
+
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -14,6 +16,7 @@ public class BcdVerifica extends Application {
  TextField tNum = new TextField("");
  Label lRis = new Label();
  Button bCalcola = new Button("calcola");
+ 
  public void start(Stage finestra) {
 	 GridPane griglia = new GridPane();
 	 Scene scena = new Scene(griglia);
@@ -33,7 +36,24 @@ public class BcdVerifica extends Application {
 		bCalcola.setOnAction(e->calcolo());
 	}
  public void calcolo() {
+	 String v[]= tNum.getText().split(""); 
+	 String bcd="";
+	 Hashtable<String,String> convertitore = new Hashtable<String, String>();
+	 convertitore.put("0", "0000");
+	 convertitore.put("1", "0001");
+	 convertitore.put("2", "0010");
+	 convertitore.put("3", "0011");
+	 convertitore.put("4", "0100");
+	 convertitore.put("5", "0101");
+	 convertitore.put("6", "0110");
+	 convertitore.put("7", "0111");
+	 convertitore.put("8", "1000");
+	 convertitore.put("9", "1001");
 	 
+	 for(int i=0; i<v.length;i++) {
+		 bcd+=convertitore.get(v[i]);
+	 }
+	 lRis.setText(bcd);
  }
  
 
